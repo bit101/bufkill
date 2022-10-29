@@ -140,7 +140,7 @@ Note that hitting the escape key, or Control-C or other possible interrupts will
 
 `bufkill_ignore_splits`
 
-In the event that you don't care about the fancy split handing, but you do want the ability to check for modified buffers and handle accordingly before deleting them, set `bufkill_ignore_splits` to 1. It defaults to 0. Examples:
+In the event that you don't care about the fancy split handing (or you have a complex layout that it is breaking under), but you do want the ability to check for modified buffers and handle accordingly before deleting them, set `bufkill_ignore_splits` to 1. It defaults to 0. Examples:
 
 vimscript:
 
