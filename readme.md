@@ -1,4 +1,4 @@
-# buf-kill
+# bufkill
 
 A vim plugin for intelligent deletion of buffers.
 
@@ -24,7 +24,7 @@ If you want to delete a regular, unmodified buffer, it's a pretty simple command
 
 ### Back to simplicity
 
-`buf-kill` handles all this pretty well:
+`bufkill` handles all this pretty well:
 
 - Read-only buffers and terminal buffers are closed directly without saving.
 - Modified buffers will prompt you to Save or Discard changes.
@@ -49,7 +49,7 @@ You're done working on `A` so you close that buffer. By default, here's what you
 
 The vsplit is gone and the buffer from the other pane fills the window. Probably not what you want.
 
-`buf-kill` will preserve that split and pin the buffer in the alternate pane right up until that buffer is the last one alive.
+`bufkill` will preserve that split and pin the buffer in the alternate pane right up until that buffer is the last one alive.
 
 So as you call `KillBuffer` repeatedly, you'll get this sequence:
 
@@ -67,7 +67,7 @@ Of course this works for horizontal splits too, and it doesn't matter which pane
 
 ## Usage:
 
-`buf-kill` exposes a command: `KillBuffer` which is explained in more detail below. You do a simple key mapping to be able to call it easily, for example:
+`bufkill` exposes a command: `KillBuffer` which is explained in more detail below. You do a simple key mapping to be able to call it easily, for example:
 
 ```
 nnoremap <Leader>d :KillBuffer<CR>
@@ -77,30 +77,30 @@ nnoremap <Leader>d :KillBuffer<CR>
 
 #### Default Action
 
-`buf_kill_default_action`
+`bufkill_default_action`
 
-By default, when you try to delete a modified buffer, `buf-kill` will prompt you to Save/Discard/Cancel. You can change that behavior to always `save`, always `discard`, or always `prompt` by setting `buf_kill_default_action` to one of those options. For example:
+By default, when you try to delete a modified buffer, `bufkill` will prompt you to Save/Discard/Cancel. You can change that behavior to always `save`, always `discard`, or always `prompt` by setting `bufkill_default_action` to one of those options. For example:
 
 vimscript:
 
 ```
-let g:buf_kill_default_action = 'save'
-let g:buf_kill_default_action = 'discard'
-let g:buf_kill_default_action = 'prompt'
+let g:bufkill_default_action = 'save'
+let g:bufkill_default_action = 'discard'
+let g:bufkill_default_action = 'prompt'
 ```
 
 lua:
 
 ```
-vim.g.buf_kill_default_action = 'save'
-vim.g.buf_kill_default_action = 'discard'
-vim.g.buf_kill_default_action = 'prompt'
+vim.g.bufkill_default_action = 'save'
+vim.g.bufkill_default_action = 'discard'
+vim.g.bufkill_default_action = 'prompt'
 ```
 
 
 #### Default Choice
 
-`buf_kill_default_choice`
+`bufkill_default_choice`
 
 Once you are prompted with the the Save/Discard/Cancel options, you can choose one of the options by pressing `S`, `D` or `C`. These choices will be indicated by parentheses and square brackets like so:
 
@@ -108,22 +108,22 @@ Once you are prompted with the the Save/Discard/Cancel options, you can choose o
 (S)ave, (D)iscard changes, [C]ancel: 
 ```
 
-Note that the C option has square brackets rather thand parentheses. This indicates that it is the default choice - if you hit enter rather than pressing a key, it will cancel. Out of the box, the default choice will always be `cancel`. You can change that default by setting the global opton `buf_kill_default_choice` to `save`, `discard` or `cancel`. For example:
+Note that the C option has square brackets rather thand parentheses. This indicates that it is the default choice - if you hit enter rather than pressing a key, it will cancel. Out of the box, the default choice will always be `cancel`. You can change that default by setting the global opton `bufkill_default_choice` to `save`, `discard` or `cancel`. For example:
 
 vimscript:
 
 ```
-let g:buf_kill_default_choice = 'save'
-let g:buf_kill_default_choice = 'discard'
-let g:buf_kill_default_choice = 'cancel'
+let g:bufkill_default_choice = 'save'
+let g:bufkill_default_choice = 'discard'
+let g:bufkill_default_choice = 'cancel'
 ```
 
 lua:
 
 ```
-vim.g.buf_kill_default_choice = 'save'
-vim.g.buf_kill_default_choice = 'discard'
-vim.g.buf_kill_default_choice = 'cancel'
+vim.g.bufkill_default_choice = 'save'
+vim.g.bufkill_default_choice = 'discard'
+vim.g.bufkill_default_choice = 'cancel'
 ```
 
 If you change the default to `save` for example, the prompt will now look like this:
@@ -132,7 +132,25 @@ If you change the default to `save` for example, the prompt will now look like t
 [S]ave, (D)iscard changes, (C)ancel: 
 ```
 
-And if you hit enter, it `buf-kill` will attempt to save the buffer and then close it.
+And if you hit enter, it `bufkill` will attempt to save the buffer and then close it.
+
+#### Ignore Splits
+
+`bufkill_ignore_splits`
+
+In the event that you don't care about the fancy split handing, but you do want the ability to check for modified buffers and handle accordingly before deleting them, set `bufkill_ignore_splits` to 1. It defaults to 0. Examples:
+
+vimscript:
+
+```
+let g:bufkill_ignore_splits = 1
+```
+
+lua:
+
+```
+vim.g.bufkill_ignore_splits = 1
+```
 
 ## Todo
 
