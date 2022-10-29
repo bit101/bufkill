@@ -134,6 +134,8 @@ If you change the default to `save` for example, the prompt will now look like t
 
 And if you hit enter, it `bufkill` will attempt to save the buffer and then close it.
 
+Note that hitting the escape key, or Control-C or other possible interrupts will always be interpreted as `cancel`
+
 #### Ignore Splits
 
 `bufkill_ignore_splits`
@@ -155,4 +157,7 @@ vim.g.bufkill_ignore_splits = 1
 ## Todo
 
 - Option to show an "Are you sure" prompt when closing a terminal buffer, as it may have an important process running in it.
-- There may be issues if you have multiple/nested splits set up. These scenarios have not been thoroughly tested.
+
+## Known issues
+
+- There may be issues if you have multiple/nested splits set up. Or have bufers open in tabs. These scenarios have not been thoroughly tested.
