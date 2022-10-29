@@ -8,6 +8,14 @@ You probably don't want this, but if you find it useful, that's great.
 
 The goal is to have a simple command for closing (deleting) buffers that works intelligently under most situations.
 
+## Suggested use:
+
+`buf-kill` exposes a command: `KillBuffer` which is explained in more detail below. You do a simple key mapping to be able to call it easily, for example:
+
+```
+nnoremap <Leader>d :KillBuffer<CR>
+```
+
 ## Deleting buffers
 
 If you want to delete a regular, unmodified buffer, it's a pretty simple command:
@@ -25,7 +33,7 @@ If you want to delete a regular, unmodified buffer, it's a pretty simple command
 
 ### Back to simplicity
 
-`buf-kill` handles all this pretty well for the most part by giving you a command `KillBuffer` that does things a little more intelligently:
+`buf-kill` handles all this pretty well:
 
 - Read-only buffers and terminal buffers are closed directly without saving.
 - Modified buffers will prompt you to Save or Discard changes.
@@ -65,3 +73,11 @@ So as you call `KillBuffer` repeatedly, you'll get this sequence:
 ```
 
 Note that this works for horizontal splits too, and it doesn't matter which pane of the split the terminal is in - it will just stay where it is.
+
+## Todo
+
+- Provide a little more configuration for some options like:
+  - When deleting modified, named buffers, an option to always save changes, always discard changes, or always prompt.
+  - Similar for un-named buffers.
+- Option to show an "Are you sure" prompt when closing a terminal buffer, as it may have an important process running in it.
+- Handle that second to last step in the sequence above, where you are left with the terminal buffer open in both sides of the split.
