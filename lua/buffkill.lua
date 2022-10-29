@@ -1,3 +1,14 @@
+function getDefaultChoice()
+  local choice = vim.g.buf_kill_default_choice
+  if choice == "save" then
+    return 1
+  elseif choice == "discard" then
+    return 2
+  end
+  return 3
+end 
+
+
 function killBuffer()
   -- if readonly, just delete and return
   if vim.o.readonly then
@@ -7,7 +18,8 @@ function killBuffer()
 
   -- buffer is modified
   if vim.o.modified then
-    choice = vim.fn.confirm('Modified file.', '&Save\n&Discard changes\n&Cancel', 3)
+    local default_choice = getDefaultChoice()
+    local choice = vim.fn.confirm('Modified file.', '&Save\n&Discard changes\n&Cancel', default_choice)
 
     -- discard does nothing and the buffer will be deleted below
 
@@ -18,13 +30,13 @@ function killBuffer()
 
     -- save...
     if choice == 1 then
-      name = vim.fn.bufname()
+      local name = vim.fn.bufname()
       if string.len(name) > 0 then
         -- has a name
         vim.cmd('silent! w')
       else
         -- needs a name
-        filename = vim.fn.input('Save as: ', '', 'dir')
+        local filename = vim.fn.input('Save as: ', '', 'dir')
         if filename == "" then
           -- user aborted
           print('Buffer delete aborted.')
@@ -36,8 +48,8 @@ function killBuffer()
     end
   end
 
-  buffers = vim.fn.getbufinfo({buflisted = 1})
-  count = #buffers
+  local buffers = vim.fn.getbufinfo({buflisted = 1})
+  local count = #buffers
   if count == 1 then
     -- last buffer open
     vim.cmd('bd!')
