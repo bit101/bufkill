@@ -76,13 +76,41 @@ nnoremap <Leader>d :KillBuffer<CR>
 
 ### Options
 
-When presented with the Save/Discard/Cancel options, the default (if you just hit enter) is to cancel. You can change that default by setting the global opton `buf_kill_default_choice` to `save` or `discard`. For example:
+#### Default Action
+
+`buf_kill_default_action`
+
+By default, when you try to delete a modifified buffer, `buf-kill` will prompt you to Save/Discard/Cancel. You can change that behavior to always save or always discard by setting `buf_kill_default_action`. For example:
+
+vimscript:
+
+```
+let g:buf_kill_default_action = 'save'
+let g:buf_kill_default_action = 'discard'
+let g:buf_kill_default_action = 'prompt'
+```
+
+lua:
+
+```
+vim.g.buf_kill_default_action = 'save'
+vim.g.buf_kill_default_action = 'discard'
+vim.g.buf_kill_default_action = 'prompt'
+```
+
+
+#### Default Choice
+
+`buf_kill_default_choice`
+
+When prompted with the Save/Discard/Cancel options, the default (if you just hit enter) is to cancel. You can change that default by setting the global opton `buf_kill_default_choice` to `save` or `discard`. For example:
 
 vimscript:
 
 ```
 let g:buf_kill_default_choice = 'save'
 let g:buf_kill_default_choice = 'discard'
+let g:buf_kill_default_choice = 'cancel'
 ```
 
 lua:
@@ -90,12 +118,10 @@ lua:
 ```
 vim.g.buf_kill_default_choice = 'save'
 vim.g.buf_kill_default_choice = 'discard'
+vim.g.buf_kill_default_choice = 'cancel'
 ```
 
 ## Todo
 
-- Provide a little more configuration for some options like:
-  - When deleting modified, named buffers, an option to always save changes, always discard changes, or always prompt.
-  - Similar for un-named buffers.
 - Option to show an "Are you sure" prompt when closing a terminal buffer, as it may have an important process running in it.
 - Handle that second to last step in the sequence above, where you are left with the terminal buffer open in both sides of the split.
