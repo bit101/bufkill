@@ -1,4 +1,4 @@
-#buff-kill
+# buff-kill
 
 A lua-based neovim plugin for intelligent deletion of buffers.
 
