@@ -30,6 +30,11 @@ function s:DoPrompt()
   let l:default_choice = s:GetDefaultChoice()
   let l:choice = confirm('Modified buffer.', "&Save\n&Discard changes\n&Cancel", default_choice)
 
+  " escape, CTRL-C, other interrupt...
+  if l:choice == 0
+    return 0
+  endif
+
   " save...
   if l:choice == 1
     return s:DoSave()
@@ -45,8 +50,8 @@ function s:DoPrompt()
     return 0
   endif
 
-  " shouldn't get here but...
-  return 1
+  " shouldn't get here, but...
+  return 0
 endfunction
 
 function s:CheckSave()
