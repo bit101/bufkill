@@ -81,3 +81,5 @@ Note that this works for horizontal splits too, and it doesn't matter which pane
   - Similar for un-named buffers.
 - Option to show an "Are you sure" prompt when closing a terminal buffer, as it may have an important process running in it.
 - Handle that second to last step in the sequence above, where you are left with the terminal buffer open in both sides of the split.
+- When you get the Save/Discard option, the default action (if you just hit enter) is Save. Make that configurable.
+- Add another option to the list of choices: Save/Discard/Abort, with Abort being the default.
