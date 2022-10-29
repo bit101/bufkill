@@ -79,7 +79,7 @@ nnoremap <Leader>d :KillBuffer<CR>
 
 `buf_kill_default_action`
 
-By default, when you try to delete a modified buffer, `buf-kill` will prompt you to Save/Discard/Cancel. You can change that behavior to always save, always discard, or always prompt by setting `buf_kill_default_action`. For example:
+By default, when you try to delete a modified buffer, `buf-kill` will prompt you to Save/Discard/Cancel. You can change that behavior to always `save`, always `discard`, or always `prompt` by setting `buf_kill_default_action` to one of those options. For example:
 
 vimscript:
 
@@ -102,7 +102,7 @@ vim.g.buf_kill_default_action = 'prompt'
 
 `buf_kill_default_choice`
 
-When prompted with the Save/Discard/Cancel options, the default (if you just hit enter) is to cancel. You can change that default by setting the global opton `buf_kill_default_choice` to `save`, `discard` or `cancel`. For example:
+Once you are prompted with the the Save/Discard/Cancel options, you can choose one of the options by pressing `S`, `D` or `C`. Or you can press enter to accept the default choice. Out of the box, the default choice will always be `cancel`. You can change that default by setting the global opton `buf_kill_default_choice` to `save`, `discard` or `cancel`. For example:
 
 vimscript:
 
