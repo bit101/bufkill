@@ -7,7 +7,14 @@ function killBuffer()
 
   -- buffer is modified
   if vim.o.modified then
-    choice = vim.fn.confirm('Modified file.', '&Save\n&Discard', 1)
+    choice = vim.fn.confirm('Modified file.', '&Save\n&Discard changes\n&Cancel', 3)
+
+    -- discard does nothing and the buffer will be deleted below
+
+    -- cancel...
+    if choice == 3 then
+      return
+    end
 
     -- save...
     if choice == 1 then
