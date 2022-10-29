@@ -1,4 +1,4 @@
-# buff-kill
+# buf-kill
 
 A vim plugin for intelligent deletion of buffers.
 
@@ -123,3 +123,4 @@ vim.g.buf_kill_default_choice = 'cancel'
 ## Todo
 
 - Option to show an "Are you sure" prompt when closing a terminal buffer, as it may have an important process running in it.
+- There may be issues if you have multiple/nested splits set up. These scenarios have not been thoroughly tested.
