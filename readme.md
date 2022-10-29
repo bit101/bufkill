@@ -102,7 +102,13 @@ vim.g.buf_kill_default_action = 'prompt'
 
 `buf_kill_default_choice`
 
-Once you are prompted with the the Save/Discard/Cancel options, you can choose one of the options by pressing `S`, `D` or `C`. Or you can press enter to accept the default choice. Out of the box, the default choice will always be `cancel`. You can change that default by setting the global opton `buf_kill_default_choice` to `save`, `discard` or `cancel`. For example:
+Once you are prompted with the the Save/Discard/Cancel options, you can choose one of the options by pressing `S`, `D` or `C`. These choices will be indicated by parentheses and square brackets like so:
+
+```
+(S)ave, (D)iscard chantes, [C]ancel: 
+```
+
+Note that the C option has square brackets rather thand parentheses. This indicates that it is the default choice - if you hit enter rather than pressing a key, it will cancel. Out of the box, the default choice will always be `cancel`. You can change that default by setting the global opton `buf_kill_default_choice` to `save`, `discard` or `cancel`. For example:
 
 vimscript:
 
@@ -119,6 +125,14 @@ vim.g.buf_kill_default_choice = 'save'
 vim.g.buf_kill_default_choice = 'discard'
 vim.g.buf_kill_default_choice = 'cancel'
 ```
+
+If you change the default to `save` for example, the prompt will now look like this:
+
+```
+[S]ave, (D)iscard chantes, (C)ancel: 
+```
+
+And if you hit enter, it `buf-kill` will attempt to save the buffer and then close it.
 
 ## Todo
 
