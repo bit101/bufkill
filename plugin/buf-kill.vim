@@ -76,12 +76,6 @@ function s:killBuffer()
     return
   endif
 
-  " " if readonly, just delete and return
-  " if &readonly || &buftype == "terminal"
-  "   execute 'bd!'
-  "   return
-  " endif
-
   let l:openCount = len(win_findbuf(bufnr('%')))
   let l:buffers = getbufinfo({'buflisted': 1})
   let l:count = len(l:buffers)
@@ -91,7 +85,7 @@ function s:killBuffer()
   else
     if l:openCount > 1
       " edge case: starting off with duplicate buffers in a split
-      " need to go back one
+      " we'll just show the previous buffer and not close anything
       execute 'bp'
       return
     endif
