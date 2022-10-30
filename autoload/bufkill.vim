@@ -1,4 +1,4 @@
-function s:GetDefaultChoice()
+function! s:GetDefaultChoice()
   let l:choice = g:bufkill_default_choice
   if l:choice == "save"
     return 1
@@ -8,7 +8,7 @@ function s:GetDefaultChoice()
   return 3
 endfunction
 
-function s:DoSave()
+function! s:DoSave()
   let l:name = bufname('%')
   if len(name) > 0
     execute 'silent! w'
@@ -26,7 +26,7 @@ function s:DoSave()
   return 1
 endfunction
 
-function s:DoPrompt()
+function! s:DoPrompt()
   let l:default_choice = s:GetDefaultChoice()
   let l:choice = confirm('Modified buffer.', "&Save\n&Discard changes\n&Cancel", default_choice)
 
@@ -54,7 +54,7 @@ function s:DoPrompt()
   return 0
 endfunction
 
-function s:CheckSave()
+function! s:CheckSave()
   " these don't need to be saved
   if !&modified || &readonly || &buftype == 'terminal'
     return 1
@@ -114,7 +114,7 @@ function! s:Kill()
   endif
 endfunction
 
-function bufkill#KillBuffer()
+function! bufkill#KillBuffer()
   let l:ok = s:CheckSave()
 
   " we might have abandoned in CheckSave()
