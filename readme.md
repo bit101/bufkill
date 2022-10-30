@@ -108,7 +108,7 @@ Once you are prompted with the the Save/Discard/Cancel options, you can choose o
 (S)ave, (D)iscard changes, [C]ancel: 
 ```
 
-Note that the C option has square brackets rather thand parentheses. This indicates that it is the default choice - if you hit enter rather than pressing a key, it will cancel. Out of the box, the default choice will always be `cancel`. You can change that default by setting the global opton `bufkill_default_choice` to `save`, `discard` or `cancel`. For example:
+Note that the C option has square brackets rather than parentheses. This indicates that it is the default choice - if you hit enter rather than pressing a key, it will cancel. Out of the box, the default choice will always be `cancel`. You can change that default by setting the global opton `bufkill_default_choice` to `save`, `discard` or `cancel`. For example:
 
 vimscript:
 
