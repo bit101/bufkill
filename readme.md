@@ -67,7 +67,7 @@ Of course this works for horizontal splits too, and it doesn't matter which pane
 
 ## Usage:
 
-`bufkill` exposes a command: `KillBuffer` which is explained in more detail below. You do a simple key mapping to be able to call it easily, for example:
+`bufkill` exposes a command: `KillBuffer` which is explained in more detail below. You can do a simple key mapping to be able to call it easily, for example:
 
 ```
 nnoremap <Leader>d :KillBuffer<CR>
@@ -153,6 +153,8 @@ lua:
 ```
 vim.g.bufkill_ignore_splits = 1
 ```
+
+Now `bufkill` will simply delete any buffer it can and prompt for those that need saving (or however you configured it), but it won't to any special handling for maintaining splits.
 
 ## Todo
 
