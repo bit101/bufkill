@@ -154,6 +154,14 @@ lua:
 vim.g.bufkill_close_terminal = 0
 ```
 
+Now you will get a prompt when you attempt to delete a terminal buffer:
+
+```
+OK to close terminal?
+(Y)es, [N]o:
+```
+
+That will work as you expect.
 
 #### Ignore Splits
 
