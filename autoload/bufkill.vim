@@ -55,8 +55,21 @@ function! s:DoPrompt()
 endfunction
 
 function! s:CheckSave()
+  " confirm closing terminal
+  if &buftype == 'terminal'
+    if g:bufkill_close_terminal
+      return 1
+    endif
+
+    let l:choice = confirm('OK to close terminal?', "&Yes\n&No", 2)
+    if l:choice == 1 
+      return 1
+    endif
+    return 0
+  endif
+
   " these don't need to be saved
-  if !&modified || &readonly || &buftype == 'terminal'
+  if !&modified || &readonly
     return 1
   endif
 

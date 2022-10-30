@@ -136,6 +136,25 @@ And if you hit enter, it `bufkill` will attempt to save the buffer and then clos
 
 Note that hitting the escape key, or Control-C or other possible interrupts will always be interpreted as `cancel`
 
+#### Close Terminal
+
+`bufkill_close_terminal`
+
+By default, calling `KillBuffer` on a terminal buffer will close it straight away. If you want a warning and confirmation before closing terminal buffers, set `bufkill_close_terminal` to 0. It defaults to 1. Example:
+
+vimscript:
+
+```
+let g:bufkill_close_terminal = 0
+```
+
+lua:
+
+```
+vim.g.bufkill_close_terminal = 0
+```
+
+
 #### Ignore Splits
 
 `bufkill_ignore_splits`
@@ -156,10 +175,6 @@ vim.g.bufkill_ignore_splits = 1
 
 Now `bufkill` will simply delete any buffer it can and prompt for those that need saving (or however you configured it), but it won't to any special handling for maintaining splits.
 
-## Todo
-
-- Option to show an "Are you sure" prompt when closing a terminal buffer, as it may have an important process running in it.
-
 ## Known issues
 
-- There may be issues if you have multiple/nested splits set up. Or have bufers open in tabs. These scenarios have not been thoroughly tested.
+- There may be issues with split handling if you have multiple splits set up. Or have buffers open in other tabs. These scenarios have not been thoroughly tested. The split handing assumes a single split.
