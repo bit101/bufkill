@@ -181,7 +181,7 @@ lua:
 vim.g.bufkill_ignore_splits = 1
 ```
 
-Now `bufkill` will simply delete any buffer it can and prompt for those that need saving (or however you configured it), but it won't to any special handling for maintaining splits.
+Now `bufkill` will simply delete any buffer it can and prompt for those that need saving (or however you configured it), but it won't do any special handling for maintaining splits.
 
 ## Known issues
 
