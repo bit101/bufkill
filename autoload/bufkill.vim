@@ -18,7 +18,6 @@ function! s:DoSave()
   let l:filename = input('Save as: ', '', 'dir')
   if filename == ""
     " user didn't enter a name. probably pressed escape.
-    echom 'Buffer delete aborted.'
     return 0
   else
     execute 'silent! w ' . filename
