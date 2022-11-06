@@ -1,21 +1,21 @@
 function! s:GetDefaultChoice()
-  let l:choice = g:bufkill_default_choice
-  if l:choice == "save"
+  let choice = g:bufkill_default_choice
+  if choice == "save"
     return 1
-  elseif l:choice == "discard"
+  elseif choice == "discard"
     return 2
   endif
   return 3
 endfunction
 
 function! s:DoSave()
-  let l:name = bufname('%')
+  let name = bufname('%')
   if len(name) > 0
     execute 'silent! w'
     return 1
   endif
 
-  let l:filename = input('Save as: ', '', 'dir')
+  let filename = input('Save as: ', '', 'dir')
   if filename == ""
     " user didn't enter a name. probably pressed escape.
     return 0
@@ -26,26 +26,26 @@ function! s:DoSave()
 endfunction
 
 function! s:DoPrompt()
-  let l:default_choice = s:GetDefaultChoice()
-  let l:choice = confirm('Modified buffer.', "&Save\n&Discard changes\n&Cancel", default_choice)
+  let default_choice = s:GetDefaultChoice()
+  let choice = confirm('Modified buffer.', "&Save\n&Discard changes\n&Cancel", default_choice)
 
   " escape, CTRL-C, other interrupt...
-  if l:choice == 0
+  if choice == 0
     return 0
   endif
 
   " save...
-  if l:choice == 1
+  if choice == 1
     return s:DoSave()
   endif
 
   " discard...
-  if l:choice == 2
+  if choice == 2
     return 1
   endif
 
   " cancel...
-  if l:choice == 3 
+  if choice == 3 
     return 0
   endif
 
@@ -60,8 +60,8 @@ function! s:CheckSave()
       return 1
     endif
 
-    let l:choice = confirm('OK to close terminal?', "&Yes\n&No", 2)
-    if l:choice == 1 
+    let choice = confirm('OK to close terminal?', "&Yes\n&No", 2)
+    if choice == 1 
       return 1
     endif
     return 0
@@ -72,7 +72,7 @@ function! s:CheckSave()
     return 1
   endif
 
-  let l:action = g:bufkill_default_action
+  let action = g:bufkill_default_action
 
   if action == "discard"
     return 1
@@ -89,12 +89,12 @@ endfunction
 function! s:swapAndKill()
   " swap this buffer with previous buffer and delete this.
   execute 'bp|bd! #'
-  let l:bufferCount = len(getbufinfo({'buflisted': 1}))
-  let l:openCount = len(win_findbuf(bufnr('%')))
+  let bufferCount = len(getbufinfo({'buflisted': 1}))
+  let openCount = len(win_findbuf(bufnr('%')))
 
-  if l:openCount > 1
+  if openCount > 1
     " swapped buffer is already open in another split
-    if l:bufferCount == 1
+    if bufferCount == 1
       " this is the last buffer, kill the split
       execute 'only'
     else 
@@ -111,13 +111,13 @@ function! s:Kill()
     return
   endif
 
-  let l:bufferCount = len(getbufinfo({'buflisted': 1}))
-  let l:openCount = len(win_findbuf(bufnr('%')))
+  let bufferCount = len(getbufinfo({'buflisted': 1}))
+  let openCount = len(win_findbuf(bufnr('%')))
 
-  if l:bufferCount == 1
+  if bufferCount == 1
     " last buffer open
     execute 'bd!'
-  elseif l:openCount > 1
+  elseif openCount > 1
     " edge case: starting off with duplicate buffers in a split
     " we'll just show the previous buffer and not close anything
     execute 'bp'
@@ -127,10 +127,10 @@ function! s:Kill()
 endfunction
 
 function! bufkill#KillBuffer()
-  let l:ok = s:CheckSave()
+  let ok = s:CheckSave()
 
   " we might have abandoned in CheckSave()
-  if l:ok
+  if ok
     call s:Kill()
   endif
 endfunction
